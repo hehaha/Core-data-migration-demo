@@ -33,10 +33,14 @@ class AttachPhotoViewController: UIViewController, UIImagePickerControllerDelega
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let note = self.note {
-            let attachment = NSEntityDescription.insertNewObjectForEntityForName("Attachment", inManagedObjectContext: note.managedObjectContext!) as! Attachment
+            let attachment = NSEntityDescription.insertNewObjectForEntityForName("ImageAttachment", inManagedObjectContext: note.managedObjectContext!) as! ImageAttachment
             attachment.dateCreated = NSDate()
             attachment.toNote = note
-            attachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            attachment.image = image
+            attachment.height = image.size.height
+            attachment.width = image.size.width
+            attachment.caption = (note.body as NSString).substringToIndex(80)
         }
         navigationController?.popViewControllerAnimated(true)
     }
