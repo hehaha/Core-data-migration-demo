@@ -14,7 +14,7 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
     lazy var stack : CoreDataStack = CoreDataStack(modelName:"UnCloudNotesDataModel",
                                                    storeName:"UnCloudNotes",
                                                      options: [NSMigratePersistentStoresAutomaticallyOption: true,
-                                                                     NSInferMappingModelAutomaticallyOption:true])
+                                                                     NSInferMappingModelAutomaticallyOption:false])
     
     var _notes : NSFetchedResultsController? = nil
     var notes : NSFetchedResultsController {
